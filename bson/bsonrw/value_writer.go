@@ -247,7 +247,7 @@ func (vw *valueWriter) writeElementHeader(t bsontype.Type, destination mode, cal
 		}
 
 		vw.buf = bsoncore.AppendHeader(vw.buf, t, key)
-	case mValue:
+	case mValue, mTopLevel:
 		// TODO: Do this with a cache of the first 1000 or so array keys.
 		vw.buf = bsoncore.AppendHeader(vw.buf, t, strconv.Itoa(vw.stack[vw.frame].arrkey))
 	default:
